@@ -13,18 +13,11 @@ export type Inputs = {
   headBoundaryOverride: string;
 };
 
-const ARGS_REGEX = /\w+|"(?:\\"|[^"])+"/g;
-
 export function parseArgs(raw: string): string[] {
-  const parts = ARGS_REGEX.exec(raw);
-
-  if (!parts) return [];
-  return parts.filter((part) => part.length > 0);
+  return raw.split(' ').filter((arg) => arg.length > 0);
 }
 
 export function parseInputs(): Inputs {
-  core.info(`input args: ${core.getInput('args')}`);
-
   return {
     targets: core
       .getInput('targets', { required: true })
