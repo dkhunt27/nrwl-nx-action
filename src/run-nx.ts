@@ -99,6 +99,8 @@ async function runNxAffected(
 export async function runNx(inputs: Inputs, nx: CommandWrapper): Promise<void> {
   const args = inputs.args;
 
+  core.info(`args: ${args.join()}`);
+
   if (inputs.nxCloud) {
     process.env['NX_RUN_GROUP'] = github.context.runId.toString();
 
@@ -109,7 +111,7 @@ export async function runNx(inputs: Inputs, nx: CommandWrapper): Promise<void> {
   }
 
   if (inputs.parallel) {
-    args.push(`--parallel=${inputs.parallel}`);
+    args.push(`--parallel=${inputs.parallel.toString()}`);
   }
 
   if (inputs.all === true || inputs.affected === false) {
