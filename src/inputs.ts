@@ -15,7 +15,7 @@ export type Inputs = {
 
 const ARGS_REGEX = /\w+|"(?:\\"|[^"])+"/g;
 
-function parseArgs(raw: string): string[] {
+export function parseArgs(raw: string): string[] {
   const parts = ARGS_REGEX.exec(raw);
 
   if (!parts) return [];
@@ -23,6 +23,8 @@ function parseArgs(raw: string): string[] {
 }
 
 export function parseInputs(): Inputs {
+  core.info(`input args: ${core.getInput('args')}`);
+
   return {
     targets: core
       .getInput('targets', { required: true })
