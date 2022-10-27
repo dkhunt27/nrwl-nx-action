@@ -18,6 +18,8 @@ export function parseArgs(raw: string): string[] {
 }
 
 export function parseInputs(): Inputs {
+  core.info(`input args: ${core.getInput('args')}`);
+
   return {
     targets: core
       .getInput('targets', { required: true })
