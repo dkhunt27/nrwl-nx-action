@@ -31,10 +31,9 @@ export function parseInputs(): Inputs {
       .filter((project) => project.length > 0),
     all: core.getInput('all') === 'true',
     affected: core.getInput('affected') === 'true',
-    parallel:
-      parseInt(core.getInput('parallel')) === NaN
-        ? 3
-        : parseInt(core.getInput('parallel')),
+    parallel: Number.isNaN(parseInt(core.getInput('parallel')))
+      ? 3
+      : parseInt(core.getInput('parallel')),
     args: parseArgs(core.getInput('args')),
     nxCloud: core.getInput('nxCloud') === 'true',
     workingDirectory: core.getInput('workingDirectory'),
